@@ -327,6 +327,23 @@ async def run(query: str) -> dict:
     return {"result": f"Found: {query}"}
 ```
 
+### API Client SDK
+
+```typescript
+import { AgentPackClient } from "@agentpack/client";
+
+const client = new AgentPackClient({ token: "YOUR_TOKEN" });
+
+// Search packs
+const results = await client.search("pdf converter");
+
+// Import a pack
+await client.import("invoice-pdf-to-csv");
+
+// List your imports
+const packs = await client.imports.list();
+```
+
 ---
 
 ## Agent Compatibility
