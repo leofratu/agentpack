@@ -628,3 +628,54 @@ async def run(city: str) -> dict:
         r = await client.get(f"https://wttr.in/{city}?format=3")
         return {"weather": r.text.strip()}
 ```
+
+---
+
+## Troubleshooting
+
+### Bridge not running
+
+```bash
+agentpack bridge status
+# If stopped:
+agentpack bridge start
+# If won't start:
+agentpack bridge logs | tail -20
+```
+
+### Import fails
+
+- **Error: "Bridge not reachable"** — Run `agentpack bridge start`
+- **Error: "Pack not found"** — Check the pack name spelling, or it may have been unpublished
+- **Error: "Version conflict"** — Run `agentpack update <name>` or specify a version
+
+### Pack not showing in agent
+
+```bash
+# Verify it's installed
+agentpack list
+
+# Restart the agent's tool discovery
+agentpack bridge restart
+
+# Check agent-specific logs
+agentpack bridge logs --agent claude-code
+```
+
+### Publish fails
+
+- **Error: "Validation failed"** — Run `agentpack validate` to see specific issues
+- **Error: "Name taken"** — Choose a different pack name
+- **Error: "Auth expired"** — Run `agentpack login` again
+
+### Sandbox test failures
+
+```bash
+# Run tests in sandbox mode locally to reproduce
+agentpack test --sandbox --verbose
+
+# Common causes:
+# - Network calls without sandbox.network: true
+# - Writing to filesystem without permission
+# - Exceeding 30s timeout
+```
