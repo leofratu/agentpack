@@ -507,3 +507,40 @@ curl "https://api.agentpackhub.com/v1/search?q=pdf&category=Data"
   "total": 1
 }
 ```
+
+---
+
+## Webhooks
+
+Webhooks notify your systems when events happen to your published packs.
+
+### Available events
+
+- `pack.imported` — Someone imported your pack
+- `pack.reviewed` — Someone left a review
+- `pack.scored` — Security/quality score updated
+- `pack.version` — New version published
+
+### Setup
+
+```bash
+agentpack webhook create \
+  --url https://your-server.com/webhook \
+  --events pack.imported,pack.reviewed \
+  --secret your-webhook-secret
+```
+
+### Payload example
+
+```json
+{
+  "event": "pack.imported",
+  "timestamp": "2026-05-13T10:30:00Z",
+  "data": {
+    "pack": "invoice-pdf-to-csv",
+    "version": "1.2.0",
+    "agent": "claude-code",
+    "user": "sarah_dev"
+  }
+}
+```
