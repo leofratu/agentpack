@@ -109,3 +109,40 @@ AgentPack Bridge is the local installer that handles one-click imports from the 
 agentpack bridge install
 agentpack bridge status
 ```
+
+---
+
+## Architecture
+
+AgentPack Hub connects publishers with agent users through a simple pipeline:
+
+1. **Publish** — Developer pushes their AgentPack to the registry via CLI or GitHub Action.
+2. **Test & Score** — Our sandbox runs the pack, measures quality, checks for security issues, and assigns a trust score.
+3. **Registry** — Approved packs appear in the public registry with metadata, ratings, and compatibility info.
+4. **Import** — Users click Import in the web UI. AgentPack Bridge downloads and installs it locally.
+5. **Native tool** — The agent discovers the new tool and can invoke it directly.
+
+### Tech Stack
+
+- **Frontend**: React 19 + Vite 8 + Tailwind CSS 4
+- **Routing**: React Router 7
+- **UI Components**: Custom with Headless UI patterns
+- **Build**: Vite with ESBuild for fast HMR
+
+---
+
+## Core Concepts
+
+### What is an AgentPack?
+
+An AgentPack is a portable unit of agent capability — a self-contained tool that an AI agent can invoke natively. It could be a PDF parser, a code generator, a database migration checker, or anything else your agent might need.
+
+Each AgentPack contains:
+- **Source code** (TypeScript, Python, or Bash)
+- **Manifest file** describing its capabilities, inputs/outputs, and agent compatibility
+- **Optional test fixtures** for sandbox validation
+- **Metadata** including version, author, license, and tags
+
+### How is it different from MCP servers?
+
+MCP servers are a transport layer — they define how agents communicate with tools. AgentPacks are the tools themselves. An AgentPack can be delivered as an MCP server, but it can also be installed directly as a native tool in agents that support it.
