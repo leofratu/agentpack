@@ -218,3 +218,47 @@ sandbox:
 - `agents` — List of compatible agents (defaults to all)
 - `sandbox` — Permission constraints for testing
 - `tags` — Searchable tags for discovery
+
+---
+
+## CLI Commands
+
+### Core Commands
+
+```bash
+agentpack init <name>       # Scaffold a new AgentPack
+agentpack dev               # Start local dev server
+agentpack test              # Run tests (with --sandbox for sandbox mode)
+agentpack validate          # Validate manifest and structure
+agentpack publish           # Publish to registry
+agentpack unpublish         # Remove from registry (within 72h)
+```
+
+### Import Commands
+
+```bash
+agentpack import <name>     # Import a pack
+agentpack remove <name>     # Remove an imported pack
+agentpack list              # List imported packs
+agentpack update [name]     # Update pack(s) to latest
+agentpack outdated          # Show packs with available updates
+```
+
+### Bridge Commands
+
+```bash
+agentpack bridge install    # Install Bridge daemon
+agentpack bridge start      # Start Bridge
+agentpack bridge stop       # Stop Bridge
+agentpack bridge status     # Show Bridge status
+agentpack bridge logs       # View Bridge logs
+```
+
+### Account Commands
+
+```bash
+agentpack login             # Authenticate
+agentpack logout            # Clear credentials
+agentpack whoami            # Show current user
+agentpack token create      # Create API token
+```
