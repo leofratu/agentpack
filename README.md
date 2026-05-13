@@ -146,3 +146,75 @@ Each AgentPack contains:
 ### How is it different from MCP servers?
 
 MCP servers are a transport layer — they define how agents communicate with tools. AgentPacks are the tools themselves. An AgentPack can be delivered as an MCP server, but it can also be installed directly as a native tool in agents that support it.
+
+---
+
+## Manifest File
+
+Every AgentPack has a manifest file (`agentpack.yaml`) that describes its capabilities, inputs, outputs, and metadata.
+
+### Full Example
+
+```yaml
+name: invoice-pdf-to-csv
+version: 1.2.0
+description: Extract invoice data from PDFs to clean CSV
+author: data-tools
+license: MIT
+
+category: Data
+tags:
+  - pdf
+  - csv
+  - invoice
+  - extraction
+
+runtime: node
+entry: dist/index.js
+
+inputs:
+  pdf_path:
+    type: string
+    description: Path to the PDF file
+    required: true
+  format:
+    type: string
+    description: Output format (csv or json)
+    default: csv
+
+outputs:
+  data:
+    type: string
+    description: Extracted data in specified format
+  row_count:
+    type: number
+    description: Number of rows extracted
+
+agents:
+  - claude-code
+  - codex
+  - opencode
+  - kilo
+  - hermes
+  - mcp
+
+sandbox:
+  network: false
+  filesystem: read-only
+  timeout: 30s
+```
+
+### Required Fields
+
+- `name` — Unique identifier (lowercase, hyphens)
+- `version` — Semver version string
+- `description` — One-line description
+- `runtime` — Execution runtime (node, python, bash)
+- `entry` — Path to the main entry file
+
+### Optional Fields
+
+- `inputs/outputs` — Typed I/O schema for the tool
+- `agents` — List of compatible agents (defaults to all)
+- `sandbox` — Permission constraints for testing
+- `tags` — Searchable tags for discovery
