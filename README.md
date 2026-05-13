@@ -544,3 +544,33 @@ agentpack webhook create \
   }
 }
 ```
+
+---
+
+## Security & Sandboxing
+
+Security is built into every layer of AgentPack Hub.
+
+### Sandbox testing
+
+Every published pack is executed in an isolated sandbox with:
+
+- **No network access** — Packs can't phone home or exfiltrate data
+- **Read-only filesystem** — Can only read declared inputs
+- **Time limits** — 30s default timeout (configurable)
+- **Memory limits** — 256MB default heap
+
+### Security scoring
+
+Each pack receives a security score (0-100) based on:
+
+- Static analysis of source code
+- Dependency vulnerability scan
+- Runtime behavior analysis
+- Permission scope (fewer permissions = higher score)
+
+### Trust levels
+
+- **Verified** — Publisher identity confirmed, security score 80+
+- **Trusted** — 50+ imports, 4.5+ rating, security score 70+
+- **Community** — Passes sandbox tests, available for import
