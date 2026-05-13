@@ -263,6 +263,14 @@ agentpack whoami            # Show current user
 agentpack token create      # Create API token
 ```
 
+### MCP Commands
+
+```bash
+agentpack mcp serve         # Start MCP server
+agentpack mcp list          # List MCP-exposed tools
+agentpack mcp inspect <n>   # Inspect a tool's MCP schema
+```
+
 ---
 
 ## AgentPack Bridge
