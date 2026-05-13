@@ -807,3 +807,18 @@ AgentPack Hub is [MIT licensed](LICENSE).
   <a href="https://discord.gg/agentpack">💬 Discord</a> ·
   <a href="https://github.com/leofratu/agentpack">🐙 GitHub</a>
 </p>
+
+---
+
+## Community
+
+Join our community to get help, share ideas, and connect with other AgentPack developers:
+
+- **[Discord](https://discord.gg/agentpack)** — Real-time chat and support
+- **[GitHub Discussions](https://github.com/leofratu/agentpack/discussions)** — Ask questions and share ideas
+- **[Twitter/X](https://x.com/agentpack)** — Latest news and updates
+- **[Blog](https://agentpackhub.com/blog)** — Tutorials, case studies, and announcements
+
+### Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started. Whether it's bug fixes, new features, documentation improvements, or new AgentPacks — every contribution helps grow the ecosystem.
