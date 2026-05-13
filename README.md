@@ -262,3 +262,67 @@ agentpack logout            # Clear credentials
 agentpack whoami            # Show current user
 agentpack token create      # Create API token
 ```
+
+---
+
+## AgentPack Bridge
+
+Bridge is a lightweight local daemon that handles the "one click" part. When you click Import on the web, it:
+
+- Downloads the pack from the registry CDN
+- Verifies the checksum and signature
+- Installs it into the appropriate agent's tool directory
+- Registers it with the agent's tool discovery mechanism
+
+### Security Model
+
+Every pack runs in a sandbox during testing. At import time, packs run within the agent's existing permission model — they can't escalate privileges beyond what the agent already has.
+
+---
+
+## SDKs
+
+### TypeScript SDK
+
+```bash
+npm install @agentpack/sdk
+```
+
+```typescript
+import { AgentPack, Input, Output } from "@agentpack/sdk";
+
+export default new AgentPack({
+  name: "my-tool",
+  description: "My awesome tool",
+  inputs: {
+    query: Input.string("Search query"),
+  },
+  outputs: {
+    result: Output.string("Search result"),
+  },
+  async execute({ query }) {
+    return { result: `Found: ${query}` };
+  },
+});
+```
+
+### Python SDK
+
+```bash
+pip install agentpack
+```
+
+```python
+from agentpack import AgentPack, Input, Output
+
+tool = AgentPack(
+    name="my-tool",
+    description="My awesome tool",
+    inputs={"query": Input.string("Search query")},
+    outputs={"result": Output.string("Search result")},
+)
+
+@tool.execute
+async def run(query: str) -> dict:
+    return {"result": f"Found: {query}"}
+```
