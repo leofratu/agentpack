@@ -574,3 +574,57 @@ Each pack receives a security score (0-100) based on:
 - **Verified** — Publisher identity confirmed, security score 80+
 - **Trusted** — 50+ imports, 4.5+ rating, security score 70+
 - **Community** — Passes sandbox tests, available for import
+
+---
+
+## Examples
+
+### Minimal (Bash)
+
+```bash
+#!/bin/bash
+# agentpack.yaml: runtime: bash, entry: run.sh
+
+echo "Hello from a bash AgentPack!"
+echo "Input was: $AGENTPACK_INPUT"
+```
+
+### File processor (TypeScript)
+
+```typescript
+import { AgentPack } from "@agentpack/sdk";
+import { readFile } from "fs/promises";
+
+export default new AgentPack({
+  name: "word-counter",
+  description: "Count words in a file",
+  inputs: { path: { type: "string", description: "File path" } },
+  outputs: { count: { type: "number", description: "Word count" } },
+  async execute({ path }) {
+    const text = await readFile(path, "utf-8");
+    const count = text.split(/\s+/).filter(Boolean).length;
+    return { count };
+  },
+});
+```
+
+### API integration (Python)
+
+```python
+from agentpack import AgentPack, Input, Output
+import httpx
+
+tool = AgentPack(
+    name="weather-lookup",
+    description="Get current weather for a location",
+    inputs={"city": Input.string("City name")},
+    outputs={"weather": Output.string("Weather description")},
+    sandbox={"network": True},
+)
+
+@tool.execute
+async def run(city: str) -> dict:
+    async with httpx.AsyncClient() as client:
+        r = await client.get(f"https://wttr.in/{city}?format=3")
+        return {"weather": r.text.strip()}
+```
