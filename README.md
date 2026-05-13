@@ -326,3 +326,85 @@ tool = AgentPack(
 async def run(query: str) -> dict:
     return {"result": f"Found: {query}"}
 ```
+
+---
+
+## Agent Compatibility
+
+AgentPacks are designed to work across multiple AI agents.
+
+### Claude Code
+
+Installs as a native tool via the tool-use system. Claude Code discovers and invokes it directly. Supports full TypeScript and Python runtimes.
+
+### Codex
+
+Installs into the Codex tool registry. Supports all runtimes. Codex passes inputs and receives outputs via JSON.
+
+### OpenCode
+
+AgentPacks register as OpenCode extensions. The Bridge handles the translation layer between AgentPack I/O format and OpenCode's plugin system.
+
+### Kilo & Hermes
+
+Both use MCP-compatible interfaces. AgentPacks are exposed as MCP tools automatically when these agents are selected.
+
+### MCP (generic)
+
+Any MCP-compatible agent can use AgentPacks. The Bridge starts a local MCP server that exposes installed packs as MCP tools.
+
+```bash
+# Start MCP server for all installed packs
+agentpack bridge mcp --port 3000
+```
+
+---
+
+## Publishing Guide
+
+### Prerequisites
+
+- An AgentPack Hub account (free tier works)
+- The `@agentpack/cli` installed
+- A valid `agentpack.yaml` manifest
+
+### Authenticate
+
+```bash
+agentpack login
+# Opens browser for OAuth, or:
+agentpack login --token YOUR_API_TOKEN
+```
+
+### Validate before publishing
+
+```bash
+agentpack validate  # Checks manifest, runs tests
+agentpack dry-run    # Simulates publish without uploading
+```
+
+### Publish
+
+```bash
+agentpack publish
+```
+
+After publishing, our pipeline runs sandbox tests and assigns quality/security scores. Your pack goes live within minutes.
+
+### CI/CD Publishing
+
+```yaml
+# .github/workflows/publish.yml
+name: Publish AgentPack
+on:
+  push:
+    tags: ["v*"]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: agentpack/publish-action@v1
+        with:
+          token: ${{ secrets.AGENTPACK_TOKEN }}
+```
