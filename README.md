@@ -8,6 +8,31 @@ AgentPack Hub is a platform for discovering, publishing, and importing reusable 
 
 ---
 
+## Table of Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Architecture](#architecture)
+- [Core Concepts](#core-concepts)
+- [Manifest File](#manifest-file)
+- [CLI Commands](#cli-commands)
+- [AgentPack Bridge](#agentpack-bridge)
+- [SDKs](#sdks)
+- [Agent Compatibility](#agent-compatibility)
+- [Publishing Guide](#publishing-guide)
+- [Importing Packs](#importing-packs)
+- [REST API](#rest-api)
+- [Webhooks](#webhooks)
+- [Security & Sandboxing](#security--sandboxing)
+- [Examples](#examples)
+- [Troubleshooting](#troubleshooting)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## Features
 
 - **One-Click Import** — Users install packs with a single click via AgentPack Bridge. No terminal commands needed.
