@@ -679,3 +679,50 @@ agentpack test --sandbox --verbose
 # - Writing to filesystem without permission
 # - Exceeding 30s timeout
 ```
+
+---
+
+## FAQ
+
+**Is AgentPack Hub free to use?**
+Importing free packs is always free. Publishing is free for up to 5 packs. See the Pricing page for Pro and Team plans.
+
+**Can I make my pack private?**
+Yes, on Team plans. Private packs are only visible to your team members and can't be discovered in the public registry.
+
+**What languages are supported?**
+TypeScript, Python, and Bash. We're adding Go and Rust support soon.
+
+**Can I monetize my packs?**
+Yes. Set a price on any pack. We handle payments and take a 10% platform fee. Payouts are monthly via Stripe.
+
+**How long does publishing take?**
+Usually under 2 minutes. Upload is instant, then sandbox testing runs (~30-60s), then your pack is live.
+
+**Can I delete a published pack?**
+You can unpublish within 72 hours. After that, you can deprecate it (hides from search but existing users keep access).
+
+**What about breaking changes?**
+Bump the major version. Users on the old version keep working. The registry shows migration guides for major bumps if you provide them.
+
+**Is my source code public?**
+By default yes — packs are open-source. On paid plans, you can publish compiled/bundled packs without exposing source.
+
+---
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+## License
+
+AgentPack Hub is [MIT licensed](LICENSE).
+
+---
+
+<p align="center">
+  <a href="https://agentpackhub.com">🌐 Website</a> ·
+  <a href="https://docs.agentpackhub.com">📖 Docs</a> ·
+  <a href="https://discord.gg/agentpack">💬 Discord</a> ·
+  <a href="https://github.com/leofratu/agentpack">🐙 GitHub</a>
+</p>
