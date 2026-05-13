@@ -760,6 +760,37 @@ By default yes — packs are open-source. On paid plans, you can publish compile
 
 ---
 
+## Versioning
+
+AgentPacks use semantic versioning (semver). When you publish a new version, existing users keep their current version until they explicitly update.
+
+### Version rules
+
+- **Patch (1.0.x)** — Bug fixes, no API changes
+- **Minor (1.x.0)** — New features, backwards compatible
+- **Major (x.0.0)** — Breaking changes to inputs/outputs
+
+### Publishing a new version
+
+```bash
+# Bump version in agentpack.yaml, then:
+agentpack publish
+
+# Or bump and publish in one step:
+agentpack publish --bump patch
+```
+
+### Pinning versions
+
+Users can pin to a specific version or range:
+
+```bash
+agentpack import invoice-pdf-to-csv@1.2.0  # exact
+agentpack import invoice-pdf-to-csv@^1.0.0  # compatible
+```
+
+---
+
 ## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
