@@ -408,3 +408,102 @@ jobs:
         with:
           token: ${{ secrets.AGENTPACK_TOKEN }}
 ```
+
+---
+
+## Importing Packs
+
+### One-click import (recommended)
+
+Click the Import button on any pack page in the registry. AgentPack Bridge handles everything automatically.
+
+### CLI import
+
+```bash
+agentpack import <name>
+agentpack import invoice-pdf-to-csv
+agentpack import repo-security-auditor@1.5.2
+```
+
+### Manifest import (for teams)
+
+Create an `agentpacks.lock` file to import multiple packs at once:
+
+```yaml
+# agentpacks.lock
+packs:
+  - name: invoice-pdf-to-csv
+    version: "^1.2.0"
+  - name: readme-generator
+    version: "^3.0.0"
+  - name: dockerfile-fixer
+    version: "latest"
+```
+
+```bash
+agentpack import --from agentpacks.lock
+```
+
+### Verifying imports
+
+```bash
+agentpack list              # Show installed packs
+agentpack status             # Show Bridge status
+agentpack test <pack-name>   # Test an installed pack
+```
+
+---
+
+## REST API
+
+The AgentPack Hub REST API allows programmatic access to the registry.
+
+### Base URL
+
+```
+https://api.agentpackhub.com/v1
+```
+
+### Authentication
+
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.agentpackhub.com/v1/packs
+```
+
+### Endpoints
+
+```
+GET    /packs                 # List packs (paginated)
+GET    /packs/:name           # Get pack details
+GET    /packs/:name/versions  # List versions
+POST   /packs                 # Publish new pack
+DELETE /packs/:name/:version  # Unpublish version
+
+GET    /categories            # List categories
+GET    /search?q=query        # Search packs
+
+GET    /user/packs            # Your published packs
+GET    /user/imports          # Your imported packs
+POST   /user/import/:name     # Import a pack
+DELETE /user/import/:name     # Remove import
+```
+
+### Example: Search packs
+
+```bash
+curl "https://api.agentpackhub.com/v1/search?q=pdf&category=Data"
+
+# Response:
+{
+  "results": [
+    {
+      "name": "invoice-pdf-to-csv",
+      "version": "1.2.0",
+      "rating": 4.9,
+      "downloads": 97
+    }
+  ],
+  "total": 1
+}
+```
