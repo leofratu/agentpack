@@ -822,3 +822,9 @@ Join our community to get help, share ideas, and connect with other AgentPack de
 ### Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started. Whether it's bug fixes, new features, documentation improvements, or new AgentPacks — every contribution helps grow the ecosystem.
+
+## Stargazers
+
+If you find AgentPack Hub useful, please consider giving us a ⭐ on GitHub! It helps others discover the project.
+
+---
