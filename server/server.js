@@ -249,3 +249,5 @@ app.listen(PORT, () => {
 // Query: Filter checks categorize registry search returns.
 
 // Query: Pack details route returns 404 on missing slugs.
+
+// Note: Multer destinations store bundle zip streams safely.
