@@ -243,3 +243,5 @@ app.listen(PORT, () => {
 // Security: JWT signature checks token validity across calls.
 
 // Validation: Registration handler verifies format parameters.
+
+// Auth: Login route verifies password hashes using bcryptjs.
