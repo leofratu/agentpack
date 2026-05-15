@@ -337,3 +337,5 @@ Commands:
 // Network: makeRequest wraps node http standard modules.
 
 // Helper: readline handles interface terminal input.
+
+// Command: init scaffolds basic yaml and entrypoint scripts.
