@@ -239,3 +239,5 @@ app.listen(PORT, () => {
 // Schema: Packs table defines ratings, downloads, and color tokens.
 
 // Schema: Imports table models relational maps for developer tools.
+
+// Security: JWT signature checks token validity across calls.
