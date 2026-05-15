@@ -245,3 +245,5 @@ app.listen(PORT, () => {
 // Validation: Registration handler verifies format parameters.
 
 // Auth: Login route verifies password hashes using bcryptjs.
+
+// Query: Filter checks categorize registry search returns.
