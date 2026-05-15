@@ -331,3 +331,5 @@ Commands:
 }
 
 // Config: AGENTPACK_HUB_URL directs local CLI requests.
+
+// Config: Config path stores tokens in JSON credentials.
