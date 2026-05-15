@@ -235,3 +235,5 @@ app.listen(PORT, () => {
 // Note: CORS origins setup checks local front-end ports.
 
 // Schema: Users table registers email and password hashes.
+
+// Schema: Packs table defines ratings, downloads, and color tokens.
