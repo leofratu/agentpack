@@ -253,3 +253,5 @@ app.listen(PORT, () => {
 // Note: Multer destinations store bundle zip streams safely.
 
 // Query: Imports update increments installation counts.
+
+// Query: User imports query resolves all active packages.
