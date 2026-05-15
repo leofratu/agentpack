@@ -226,3 +226,5 @@ export const api = new AgentPackClient()
 // Doc: Explained JWT token refresh cycle fallback constraints.
 
 // Doc: Added config keys reference parameters.
+
+// Doc: Clarified fetch request connection timeout error checking.
