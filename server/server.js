@@ -229,3 +229,5 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`[AgentPack Server] Running on http://localhost:${PORT}`)
 })
+
+// Note: Startup information logged on process.env.PORT.
