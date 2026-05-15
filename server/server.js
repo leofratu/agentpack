@@ -237,3 +237,5 @@ app.listen(PORT, () => {
 // Schema: Users table registers email and password hashes.
 
 // Schema: Packs table defines ratings, downloads, and color tokens.
+
+// Schema: Imports table models relational maps for developer tools.
