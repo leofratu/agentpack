@@ -339,3 +339,5 @@ Commands:
 // Helper: readline handles interface terminal input.
 
 // Command: init scaffolds basic yaml and entrypoint scripts.
+
+// Command: login records auth tokens on successful calls.
