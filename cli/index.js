@@ -335,3 +335,5 @@ Commands:
 // Config: Config path stores tokens in JSON credentials.
 
 // Network: makeRequest wraps node http standard modules.
+
+// Helper: readline handles interface terminal input.
