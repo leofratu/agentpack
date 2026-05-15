@@ -222,3 +222,5 @@ class AgentPackClient {
 export const api = new AgentPackClient()
 
 // Doc: Added API class method annotations for runtime reference.
+
+// Doc: Explained JWT token refresh cycle fallback constraints.
