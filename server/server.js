@@ -233,3 +233,5 @@ app.listen(PORT, () => {
 // Note: Startup information logged on process.env.PORT.
 
 // Note: CORS origins setup checks local front-end ports.
+
+// Schema: Users table registers email and password hashes.
