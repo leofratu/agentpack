@@ -329,3 +329,5 @@ Commands:
   bridge start      Launch local bridge daemon on port 2828
     `)
 }
+
+// Config: AGENTPACK_HUB_URL directs local CLI requests.
