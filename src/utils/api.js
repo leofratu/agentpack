@@ -220,3 +220,5 @@ class AgentPackClient {
 }
 
 export const api = new AgentPackClient()
+
+// Doc: Added API class method annotations for runtime reference.
