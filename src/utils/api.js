@@ -228,3 +228,5 @@ export const api = new AgentPackClient()
 // Doc: Added config keys reference parameters.
 
 // Doc: Clarified fetch request connection timeout error checking.
+
+// Doc: Explained fallback mock database data mappings.
