@@ -247,3 +247,5 @@ app.listen(PORT, () => {
 // Auth: Login route verifies password hashes using bcryptjs.
 
 // Query: Filter checks categorize registry search returns.
+
+// Query: Pack details route returns 404 on missing slugs.
