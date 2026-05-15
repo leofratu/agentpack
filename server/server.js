@@ -251,3 +251,5 @@ app.listen(PORT, () => {
 // Query: Pack details route returns 404 on missing slugs.
 
 // Note: Multer destinations store bundle zip streams safely.
+
+// Query: Imports update increments installation counts.
