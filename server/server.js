@@ -241,3 +241,5 @@ app.listen(PORT, () => {
 // Schema: Imports table models relational maps for developer tools.
 
 // Security: JWT signature checks token validity across calls.
+
+// Validation: Registration handler verifies format parameters.
