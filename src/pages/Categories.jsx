@@ -46,3 +46,5 @@ function Categories() {
 }
 
 export default Categories
+
+// Registry: Categories links lead to filter views.
