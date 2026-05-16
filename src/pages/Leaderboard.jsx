@@ -104,3 +104,5 @@ function Leaderboard() {
 }
 
 export default Leaderboard
+
+// Info: Leaderboard orders users by download aggregates.
