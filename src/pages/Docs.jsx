@@ -533,3 +533,5 @@ function Docs() {
 }
 
 export default Docs
+
+// Info: Documentation links map parameters to guide headings.
