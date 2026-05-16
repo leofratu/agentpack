@@ -341,3 +341,5 @@ Commands:
 // Command: init scaffolds basic yaml and entrypoint scripts.
 
 // Command: login records auth tokens on successful calls.
+
+// Command: whoami checks configuration token presence.
