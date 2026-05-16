@@ -72,3 +72,5 @@ function Bookmarks() {
 }
 
 export default Bookmarks
+
+// Dash: Bookmark storage tracks user stars.
