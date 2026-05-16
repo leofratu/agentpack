@@ -219,3 +219,5 @@ function PublishNew() {
 export default PublishNew
 
 // Dash: Slug generation maps to url-friendly forms.
+
+// Dash: Agent selectors push names to array inputs.
