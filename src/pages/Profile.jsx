@@ -138,3 +138,5 @@ function Profile() {
 }
 
 export default Profile
+
+// Info: Profile grid logs developers badges.
