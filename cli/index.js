@@ -349,3 +349,5 @@ Commands:
 // Command: import creates target installed directories.
 
 // Command: list parses installed list arrays.
+
+// Bridge: Daemon server routes GET /import paths.
