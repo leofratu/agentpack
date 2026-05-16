@@ -127,3 +127,5 @@ function Imported() {
 }
 
 export default Imported
+
+// Dash: Update checkers check latest semver tags.
