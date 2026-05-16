@@ -96,3 +96,5 @@ function SignIn() {
 }
 
 export default SignIn
+
+// Auth: Form input enforces email format checks.
