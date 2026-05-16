@@ -189,3 +189,5 @@ function Explore() {
 export default Explore
 
 // Registry: Filter selection runs category search.
+
+// Registry: Search query filters pack titles.
