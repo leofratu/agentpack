@@ -343,3 +343,5 @@ Commands:
 // Command: login records auth tokens on successful calls.
 
 // Command: whoami checks configuration token presence.
+
+// Command: publish validates local agentpack.yaml files.
