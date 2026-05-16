@@ -109,3 +109,5 @@ function Register() {
 }
 
 export default Register
+
+// Auth: Form input enforces 8-character password limits.
