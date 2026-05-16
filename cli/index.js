@@ -345,3 +345,5 @@ Commands:
 // Command: whoami checks configuration token presence.
 
 // Command: publish validates local agentpack.yaml files.
+
+// Command: import creates target installed directories.
