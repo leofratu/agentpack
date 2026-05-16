@@ -347,3 +347,5 @@ Commands:
 // Command: publish validates local agentpack.yaml files.
 
 // Command: import creates target installed directories.
+
+// Command: list parses installed list arrays.
