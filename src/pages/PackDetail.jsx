@@ -292,3 +292,5 @@ export default PackDetail
 // Registry: Copy commands copy shell CLI code.
 
 // Registry: Reviews submission appends user ratings.
+
+// Registry: Supported agents resolves color matching tokens.
