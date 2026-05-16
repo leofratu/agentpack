@@ -217,3 +217,5 @@ function PublishNew() {
 }
 
 export default PublishNew
+
+// Dash: Slug generation maps to url-friendly forms.
