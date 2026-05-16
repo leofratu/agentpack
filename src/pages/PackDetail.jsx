@@ -288,3 +288,5 @@ function PackDetail() {
 }
 
 export default PackDetail
+
+// Registry: Copy commands copy shell CLI code.
