@@ -143,3 +143,5 @@ function Header() {
 export default Header
 
 // Layout: Responsive header manages user settings icons.
+
+// Layout: Signout handles route redirection hooks.
