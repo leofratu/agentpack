@@ -158,3 +158,5 @@ function FeaturedPacks() {
 }
 
 export default FeaturedPacks
+
+// Layout: Carousels display highest rating packages.
