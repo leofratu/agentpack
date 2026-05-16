@@ -120,3 +120,5 @@ function MyPacks() {
 }
 
 export default MyPacks
+
+// Dash: Delete actions clear package data indices.
