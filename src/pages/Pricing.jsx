@@ -151,3 +151,5 @@ function Pricing() {
 }
 
 export default Pricing
+
+// Info: Pricing displays currency tokens.
