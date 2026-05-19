@@ -23,9 +23,11 @@ function PublishNew() {
   })
 
   const updateField = (field, value) => {
-    setForm({ ...form, [field]: value })
     if (field === 'name') {
-      setForm({ ...form, name: value, slug: value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') })
+      const slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+      setForm(prev => ({ ...prev, name: value, slug }))
+    } else {
+      setForm(prev => ({ ...prev, [field]: value }))
     }
   }
 

@@ -30,17 +30,21 @@ function PackDetail() {
   const [userReviews, setUserReviews] = useState(initialReviews)
 
   useEffect(() => {
+    let isMounted = true
     const fetchPack = async () => {
       try {
         const data = await api.getPack(slug)
-        setPack(data)
+        if (isMounted) setPack(data)
       } catch (err) {
         console.error(err)
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
     fetchPack()
+    return () => {
+      isMounted = false
+    }
   }, [slug])
 
   if (loading) {

@@ -34,6 +34,7 @@ db.serialize(() => {
     CREATE TABLE IF NOT EXISTS packs (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       owner_id INTEGER,
+      owner TEXT,
       name TEXT UNIQUE NOT NULL,
       slug TEXT UNIQUE NOT NULL,
       description TEXT NOT NULL,
@@ -71,8 +72,8 @@ db.serialize(() => {
       ]
 
       const stmt = db.prepare(`
-        INSERT INTO packs (owner_id, name, slug, description, long_description, rating, downloads, category, agents, capabilities, color)
-        VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO packs (owner_id, owner, name, slug, description, long_description, rating, downloads, category, agents, capabilities, color)
+        VALUES (0, 'system', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `)
       for (const p of initialPacks) {
         stmt.run(p.name, p.slug, p.description, p.long_description, p.rating, p.downloads, p.category, p.agents, p.capabilities, p.color)
@@ -168,9 +169,9 @@ app.post('/v1/packs/publish', authenticateToken, upload.single('bundle'), (req, 
   const capsStr = Array.isArray(capabilities) ? capabilities.join(',') : (capabilities || '')
 
   db.run(`
-    INSERT INTO packs (owner_id, name, slug, description, long_description, category, version, agents, capabilities, repoUrl, owner)
+    INSERT INTO packs (owner_id, owner, name, slug, description, long_description, category, version, agents, capabilities, repo_url)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `, [ownerId, name, slug, description, longDescription, category, version || '1.0.0', agentsStr, capsStr, repoUrl, req.user.email], function(err) {
+  `, [ownerId, req.user.email, name, slug, description, longDescription, category, version || '1.0.0', agentsStr, capsStr, repoUrl], function(err) {
     if (err) {
       if (err.message.includes('UNIQUE')) {
         return res.status(400).json({ message: 'An AgentPack with this name already exists' })

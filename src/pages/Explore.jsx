@@ -24,17 +24,21 @@ function Explore() {
   const toast = useToast()
 
   useEffect(() => {
+    let isMounted = true
     const fetchPacks = async () => {
       try {
         const data = await api.getPacks()
-        setPacks(data)
+        if (isMounted) setPacks(data)
       } catch (err) {
-        toast('Failed to load packs from registry.', 'error')
+        if (isMounted) toast('Failed to load packs from registry.', 'error')
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
     fetchPacks()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   useEffect(() => {
