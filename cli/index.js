@@ -4,6 +4,7 @@ import path from 'path'
 import http from 'http'
 import readline from 'readline'
 import os from 'os'
+import { exportToMCP, exportToClaudeCode, exportToCodex, exportToOpenCode, exportGitHubAction } from './exporter.js'
 
 const HUB_URL = process.env.AGENTPACK_HUB_URL || 'http://localhost:3001'
 const CONFIG_DIR = path.join(os.homedir(), '.agentpack')
@@ -212,6 +213,12 @@ async function importPack(slug) {
     }
 
     console.log(`🎉 Successfully imported ${pack.name}! Installed in: ${installPath}`)
+    
+    // Auto-update Claude Code configuration if active
+    const claudeResult = exportToClaudeCode(pack, installPath)
+    if (claudeResult.updatedPath) {
+      console.log(`[Bridge] Automatically updated Claude Code config: ${claudeResult.updatedPath}`)
+    }
   } catch (err) {
     console.error(`Import failed: ${err.message}`)
     process.exit(1)
@@ -228,6 +235,56 @@ function listImports() {
   list.forEach(slug => {
     console.log(`- ${slug}`)
   })
+}
+
+async function exportPackCommand(slug) {
+  if (!slug) {
+    console.error('Error: Please specify a pack to export. Usage: agentpack export <slug>')
+    process.exit(1)
+  }
+
+  const installPath = path.join(INSTALLED_DIR, slug)
+  if (!fs.existsSync(installPath)) {
+    console.error(`Error: Pack '${slug}' is not installed locally. Run: agentpack import ${slug}`)
+    process.exit(1)
+  }
+
+  const manifestPath = path.join(installPath, 'manifest.yaml')
+  let pack = {}
+  try {
+    pack = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+  } catch {
+    console.error('Error: Failed to parse package manifest.')
+    process.exit(1)
+  }
+
+  console.log(`Exporting target configurations for: ${pack.name}...`)
+
+  const mcp = exportToMCP(pack, installPath)
+  fs.writeFileSync(path.join(process.cwd(), 'agentpack-mcp.json'), JSON.stringify(mcp, null, 2))
+  console.log(' - Exported generic MCP configuration: agentpack-mcp.json')
+
+  const codex = exportToCodex(pack)
+  fs.writeFileSync(path.join(process.cwd(), 'agentpack-codex.json'), JSON.stringify(codex, null, 2))
+  console.log(' - Exported Codex tool format: agentpack-codex.json')
+
+  const opencode = exportToOpenCode(pack, installPath)
+  fs.writeFileSync(path.join(process.cwd(), 'agentpack-opencode.json'), JSON.stringify(opencode, null, 2))
+  console.log(' - Exported OpenCode extension format: agentpack-opencode.json')
+
+  const github = exportGitHubAction(pack)
+  fs.writeFileSync(path.join(process.cwd(), 'agentpack-github.yml'), github)
+  console.log(' - Exported GitHub actions publish script: agentpack-github.yml')
+
+  // Auto-connect to Claude Code configuration file
+  const claudeResult = exportToClaudeCode(pack, installPath)
+  if (claudeResult.updatedPath) {
+    console.log(` - Automatically updated Claude Code config and activated tool: ${claudeResult.updatedPath}`)
+  } else {
+    console.log(' - Generative Claude config created: agentpack-mcp.json (merge to your ~/.claudecode/config.json)')
+  }
+
+  console.log('🎉 Standardized target exports generated successfully!')
 }
 
 function startBridge() {
@@ -265,6 +322,9 @@ function startBridge() {
           list.push(slug)
           fs.writeFileSync(INSTALLED_DB, JSON.stringify(list, null, 2))
         }
+
+        // Auto-update Claude Code configuration
+        exportToClaudeCode(pack, installPath)
 
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ success: true, message: `Successfully imported ${slug}` }))
@@ -307,6 +367,9 @@ switch (command) {
   case 'list':
     listImports()
     break
+  case 'export':
+    exportPackCommand(args[1])
+    break
   case 'bridge':
     if (args[1] === 'start') {
       startBridge()
@@ -326,28 +389,7 @@ Commands:
   publish           Publish current directory AgentPack to registry
   import <slug>     Download and register an AgentPack
   list              List locally imported AgentPacks
+  export <slug>     Generate Claude Code, Codex, and OpenCode configs
   bridge start      Launch local bridge daemon on port 2828
     `)
 }
-
-// Config: AGENTPACK_HUB_URL directs local CLI requests.
-
-// Config: Config path stores tokens in JSON credentials.
-
-// Network: makeRequest wraps node http standard modules.
-
-// Helper: readline handles interface terminal input.
-
-// Command: init scaffolds basic yaml and entrypoint scripts.
-
-// Command: login records auth tokens on successful calls.
-
-// Command: whoami checks configuration token presence.
-
-// Command: publish validates local agentpack.yaml files.
-
-// Command: import creates target installed directories.
-
-// Command: list parses installed list arrays.
-
-// Bridge: Daemon server routes GET /import paths.
